@@ -1,0 +1,106 @@
+import random
+
+# Categorías y palabras
+categorias = {
+    "Animales": ["PERRO", "GATO", "ELEFANTE", "JIRAFA", "TIGRE"],
+    "Paises": ["ECUADOR", "COLOMBIA", "ARGENTINA", "MEXICO", "PERU"],
+    "Alimentos": ["MANZANA", "PIZZA", "ARROZ", "PAN", "QUESO"]
+}
+
+def seleccionar_categoria():
+    print("\n=== CATEGORÍAS ===")
+    lista = list(categorias.keys())
+
+    for i, categoria in enumerate(lista, start=1):
+        print(f"{i}. {categoria}")
+
+    opcion = int(input("Seleccione una categoría: "))
+    return lista[opcion - 1]
+
+def generar_palabra(categoria):
+    return random.choice(categorias[categoria])
+
+def mostrar_progreso(palabra, letras_adivinadas):
+    progreso = ""
+
+    for letra in palabra:
+        if letra in letras_adivinadas:
+            progreso += letra + " "
+        else:
+            progreso += "_ "
+
+    return progreso
+
+def jugar():
+    categoria = seleccionar_categoria()
+    palabra = generar_palabra(categoria)
+
+    letras_adivinadas = []
+    intentos = 6
+    ganado = False
+
+    print("\n¡Comienza el juego!")
+
+    while intentos > 0:
+
+        print("\nPalabra:", mostrar_progreso(palabra, letras_adivinadas))
+        print("Intentos restantes:", intentos)
+        print("Letras usadas:", ", ".join(letras_adivinadas))
+
+        entrada = input(
+            "Ingrese una letra o intente adivinar la palabra: "
+        ).upper()
+
+        # Intento de palabra completa
+        if len(entrada) > 1:
+
+            if entrada == palabra:
+                ganado = True
+                break
+            else:
+                print("Palabra incorrecta.")
+                intentos -= 1
+
+        # Intento de letra
+        else:
+
+            if entrada in letras_adivinadas:
+                print("Ya ingresó esa letra.")
+                continue
+
+            letras_adivinadas.append(entrada)
+
+            if entrada in palabra:
+                print("¡Correcto!")
+            else:
+                print("Incorrecto.")
+                intentos -= 1
+
+        # Verificar victoria
+        if all(letra in letras_adivinadas for letra in palabra):
+            ganado = True
+            break
+
+    # Resultado final
+    print("\n====================")
+
+    if ganado:
+        print("🎉 ¡FELICIDADES! HAS GANADO 🎉")
+        print("La palabra era:", palabra)
+    else:
+        print("💀 HAS PERDIDO 💀")
+        print("La palabra era:", palabra)
+
+    print("====================")
+
+# Programa principal
+while True:
+    jugar()
+
+    respuesta = input(
+        "\n¿Desea jugar nuevamente? (S/N): "
+    ).upper()
+
+    if respuesta != "S":
+        print("Gracias por jugar.")
+        break
