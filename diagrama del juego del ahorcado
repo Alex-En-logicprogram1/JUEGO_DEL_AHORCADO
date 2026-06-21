@@ -1,0 +1,62 @@
+Proceso Juego_Ahorcado
+	
+    Definir categoria Como Cadena
+    Definir palabraSecreta Como Cadena
+    Definir intento Como Cadena
+    Definir intentosRestantes Como Entero
+    Definir ganado Como Logico
+	
+    // Iniciar juego
+    Escribir "===== JUEGO DEL AHORCADO ====="
+	
+    // Seleccionar categoría
+    Escribir "Seleccione una categoría:"
+    Escribir "1. Animales"
+    Escribir "2. Países"
+    Escribir "3. Alimentos"
+    Leer categoria
+	
+    // Generar palabra secreta
+    Segun categoria Hacer
+        "1":
+            palabraSecreta <- "PERRO"
+        "2":
+            palabraSecreta <- "ECUADOR"
+        "3":
+            palabraSecreta <- "MANZANA"
+        De Otro Modo:
+            palabraSecreta <- "PERRO"
+    FinSegun
+	
+    intentosRestantes <- 6
+    ganado <- Falso
+	
+    // Ciclo principal del juego
+    Mientras intentosRestantes > 0 Y No ganado Hacer
+		
+        Escribir "Intentos restantes: ", intentosRestantes
+        Escribir "Ingrese una letra o la palabra completa:"
+        Leer intento
+		
+        // Verificar resultado
+        Si Mayusculas(intento) = palabraSecreta Entonces
+            ganado <- Verdadero
+        Sino
+            intentosRestantes <- intentosRestantes - 1
+            Escribir "Intento incorrecto."
+        FinSi
+		
+    FinMientras
+	
+    // Mostrar resultado final
+    Si ganado Entonces
+        Escribir "¡Felicidades! Has ganado."
+    Sino
+        Escribir "Has perdido."
+        Escribir "La palabra secreta era: ", palabraSecreta
+    FinSi
+	
+    // Reiniciar juego
+    Escribir "¿Desea jugar nuevamente? (S/N)"
+	
+FinProceso
