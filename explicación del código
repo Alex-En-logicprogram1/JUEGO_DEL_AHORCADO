@@ -1,0 +1,102 @@
+📦 1. Librería y datos iniciales
+ 
+python
+  
+import random
+categorias = {
+    "Animales": ["PERRO", "GATO", "ELEFANTE", "JIRAFA", "TIGRE"],
+    "Paises": ["ECUADOR", "COLOMBIA", "ARGENTINA", "MEXICO", "PERU"],
+    "Alimentos": ["MANZANA", "PIZZA", "ARROZ", "PAN", "QUESO"]
+}
+ 
+ 
+-  random : sirve para elegir una palabra al azar.
+-  categorias : diccionario que agrupa las palabras por tema.
+ 
+ 
+ 
+🔧 2. Funciones definidas
+ 
+ seleccionar_categoria() 
+ 
+- Muestra la lista de categorías numeradas.
+- Lee la elección del jugador y devuelve el nombre de la categoría elegida.
+ 
+ generar_palabra(categoria) 
+ 
+- Elige al azar una palabra de la categoría seleccionada.
+ 
+ mostrar_progreso(palabra, letras_adivinadas) 
+ 
+- Crea una cadena con las letras acertadas y guiones bajos  _  para las que faltan.
+ 
+ 
+ 
+🎮 3. Función principal  jugar() 
+ 
+Inicio
+ 
+python
+  
+categoria = seleccionar_categoria()
+palabra = generar_palabra(categoria)
+letras_adivinadas = []
+intentos = 6
+ganado = False
+ 
+ 
+- Prepara la categoría, palabra secreta, lista de letras usadas, 6 intentos y estado de victoria.
+ 
+Bucle principal
+ 
+python
+  
+while intentos > 0:
+ 
+ 
+Se repite mientras queden intentos:
+ 
+- Muestra progreso, intentos y letras ya usadas.
+- Convierte la entrada a mayúsculas.
+ 
+Caso 1: ingresa la palabra completa
+ 
+- Si coincide → gana y termina el bucle.
+- Si no → pierde 1 intento.
+ 
+Caso 2: ingresa una sola letra
+ 
+- Si ya se usó → avisa y repite el turno sin perder intento.
+- Si es nueva → se agrega a la lista:
+- Si está en la palabra → aviso correcto.
+- Si no → pierde 1 intento.
+- Comprueba si ya se descubrieron todas las letras → gana y termina.
+ 
+Resultado final
+ 
+- Muestra mensaje de victoria o derrota y revela la palabra.
+ 
+ 
+ 
+🔁 4. Bucle general para repetir
+ 
+python
+  
+while True:
+    jugar()
+    respuesta = input("¿Desea jugar nuevamente? (S/N): ").upper()
+    if respuesta != "S":
+        print("Gracias por jugar.")
+        break
+ 
+ 
+- Llama al juego una y otra vez hasta que el usuario escriba algo distinto de  S .
+ 
+ 
+ 
+✅ Mejoras respecto al código anterior:
+ 
+- Palabras elegidas al azar por categoría.
+- Muestra guiones y letras acertadas.
+- Evita repetir letras ya usadas.
+- Permite jugar infinitas veces hasta que decidas salir.
