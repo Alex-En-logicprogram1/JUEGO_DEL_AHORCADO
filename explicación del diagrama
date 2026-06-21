@@ -1,0 +1,42 @@
+ Paso 1: Definición de variables
+ 
+Se declaran las variables que se usarán:
+ 
+-  categoria : Almacena la opción elegida por el usuario (como texto).
+-  palabraSecreta : La palabra que el jugador debe adivinar.
+-  intento : La letra o palabra que ingresa el jugador.
+-  intentosRestantes : Número de oportunidades que le quedan al jugador (empieza en 6).
+-  ganado : Indica si el jugador ganó (inicia como falso).
+ 
+Paso 2: Inicio y selección de categoría
+ 
+- Se muestra un mensaje de bienvenida.
+- Se presenta un menú con 3 opciones de categoría (Animales, Países, Alimentos) y se lee la elección del usuario.
+ 
+Paso 3: Asignación de la palabra secreta
+ 
+Según la categoría elegida:
+ 
+- Si elige "1" →  palabraSecreta = "PERRO"  (Animales).
+- Si elige "2" →  palabraSecreta = "ECUADOR"  (Países).
+- Si elige "3" →  palabraSecreta = "MANZANA"  (Alimentos).
+- Si ingresa cualquier otra cosa → se asigna "PERRO" por defecto.
+ 
+Paso 4: Ciclo principal del juego
+ 
+El juego se repite mientras queden intentos ( intentosRestantes > 0 ) y el jugador no haya ganado ( No ganado ):
+ 
+1. Se muestra la cantidad de intentos restantes.
+2. Se pide al jugador que ingrese una letra o la palabra completa.
+3. Se compara el intento (convertido a mayúsculas para evitar errores de mayúsculas/minúsculas) con la palabra secreta:
+- Si coinciden →  ganado  se marca como verdadero y el ciclo termina.
+- Si no coinciden → se resta 1 a  intentosRestantes  y se muestra un mensaje de error.
+ 
+Paso 5: Resultado final
+ 
+- Si  ganado  es verdadero → mensaje de felicitaciones.
+- Si no → mensaje de derrota y se revela la palabra secreta.
+ 
+Paso 6: Opción de reinicio
+ 
+Al finalizar, se pregunta al usuario si desea jugar de nuevo (aunque el proceso no incluye la lógica para reiniciarlo, solo muestra la pregunta).
